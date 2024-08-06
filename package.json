@@ -1,0 +1,50 @@
+{
+  "name": "bookings-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "concurrently \"npx tsc --watch \" \"nodemon -q ./build/server.js\" ",
+    "start": "cross-env NODE_ENV=production node -r dotenv/config build/server.js",
+    "factory:generate": "npx tsc && node runFactories.js",
+    "start:all": "npx tsc && concurrently \"npm run start:function1\" \"npm run start:function2\" \"npm run start:function3\" \"npm run start:function4\" \"npm run start:function5\" \"npm run start:function6\"",
+    "start:function1": "cross-env PORT=8080 npx @google-cloud/functions-framework --source=./build/functions/finddoctors --target=findManyDoctors",
+    "start:function2": "cross-env PORT=8081 npx @google-cloud/functions-framework --source=./build/functions/getdoctorsdetails --target=getDoctorDetails",
+    "start:function3": "cross-env PORT=8082 npx @google-cloud/functions-framework --source=./build/functions/bookappointment --target=bookAppointment",
+    "start:function4": "cross-env PORT=8083 npx @google-cloud/functions-framework --source=./build/functions/fetchappointments --target=getAppointments",
+    "start:function5": "cross-env PORT=8084 npx @google-cloud/functions-framework --source=./build/functions/addAvailableTimes --target=addAvailableTimes",
+    "start:function6": "cross-env PORT=8085 npx @google-cloud/functions-framework --source=./build/functions/updateAvailableTimes --target=updateAvailableTimes"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.4.2",
+    "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
+    "concurrently": "^8.2.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "faker": "^6.6.6",
+    "firebase": "^10.12.4",
+    "firebase-admin": "^12.3.0",
+    "googleapis": "^140.0.1",
+    "helmet": "^7.1.0",
+    "http": "^0.0.1-security",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.4",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@types/body-parser": "^1.19.5",
+    "@types/compression": "^1.7.5",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9"
+  }
+}
